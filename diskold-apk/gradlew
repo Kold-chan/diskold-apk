@@ -1,0 +1,17 @@
+#!/bin/sh
+# Gradle wrapper bootstrap
+GRADLE_USER_HOME="${GRADLE_USER_HOME:-$HOME/.gradle}"
+GRADLE_VERSION="8.4"
+GRADLE_DIST_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
+WRAPPER_JAR="$(dirname "$0")/gradle/wrapper/gradle-wrapper.jar"
+
+if [ ! -f "$WRAPPER_JAR" ]; then
+  echo "Downloading Gradle wrapper..."
+  TMPDIR=$(mktemp -d)
+  curl -sL "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}.0/gradle/wrapper/gradle-wrapper.jar" \
+    -o "$WRAPPER_JAR" 2>/dev/null || \
+  wget -q "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}.0/gradle/wrapper/gradle-wrapper.jar" \
+    -O "$WRAPPER_JAR" 2>/dev/null
+fi
+
+exec java -jar "$WRAPPER_JAR" "$@"

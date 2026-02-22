@@ -1,0 +1,13 @@
+{
+  "appId": "com.kold.diskold",
+  "appName": "Diskold",
+  "webDir": "public",
+  "server": {
+    "url": "https://TU-SERVIDOR.railway.app",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#0a0a0c"
+  }
+}
